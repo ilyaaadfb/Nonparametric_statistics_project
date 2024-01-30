@@ -1,54 +1,18 @@
-# импортируем необходимые модули
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy.optimize import curve_fit
+from approx_2D import approx_XY
+from approx_3D import approx_3D
+from nep_2D import nep_regression_2D
+from nep_3D import nep_regres_3D
+from get_points import get_data2D, get_data3D
 
+# get_data2D(name_file)[0] - X
+# get_data2D(name_file)[1] - Y
 
-# создадим функцию для аппроксимации на вход которой подаются два массива X и Y
-def approx(x, y, function):
-    popt, _ = curve_fit(function, x, y)
-    x = np.linspace(x.min(), x.max(), 100)
-    plt.plot(x, func(x, *popt), color='green', label="Полиномиальная функция степени 3")
-    plt.legend(loc='best')
-    plt.scatter(x, y, color='red', s=15)
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.show()
+# get_data3D(name_file)[0] - X
+# get_data3D(name_file)[1] - Y
+# get_data3D(name_file)[2] - Z
 
-
-with open('dataXY.txt') as f:
-    a = f.readlines()
-    x, y = [], []
-    for i in a:
-        a, b = i.split()
-        x.append(a)
-        y.append(b)
-
-
-x = np.array(list(map(float, x)))
-y = np.array(list(map(float, y)))
-
-
-# Определим математическую функцию, которая будет использоваться для подгонки кривой.
-# В этом примере мы будем использовать простую полиномиальную функцию степени 3.
-def func(t, A, w, p, c):
-    return A * np.sin(w*t + p) + c
-#
-#
-# def func(x, a, b):
-#     return a * np.exp(b ** x)
-
-#
-# def func(x, a, b):
-#     return b + a * np.log(x)
-
-
-approx(x, y, func)
-
-with open('dataXY.txt') as f:
-    a = f.readlines()
-    x, y = [], []
-    for i in a:
-        a, b = i.split()
-        x.append(a)
-        y.append(b)
+name_file = 'dataXYZ.txt'
+x = get_data3D(name_file)[0]
+y = get_data3D(name_file)[1]
+z = get_data3D(name_file)[2]
+approx_3D(x, y, z)
