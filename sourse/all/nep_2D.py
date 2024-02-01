@@ -19,31 +19,14 @@ def nep_regression_2D(x, y):
     # Задаем точки, в которых хотим получить оценку
     query_x = np.array([i for i in x])
 
-    # Задаем ширину окна h (ширина окна на одну сторону)
-    h = 0.5
-
     # Вычисляем оценки значений в заданных точках
-    query_y = [f_nadaray_watson(x, y, q, h) for q in query_x]
+    query_y = [f_nadaray_watson(x, y, q, 0.5) for q in query_x]
 
     # График
     plt.scatter(x, y, label='Исходные данные')
     plt.plot(query_x, query_y, label='Оценка Надарая-Ватсона', color='blue')
     plt.legend()
     plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
