@@ -1,7 +1,3 @@
-# импортируем необходимые модули
-import numpy as np
-
-
 def get_data2D(name_file):
     with open(name_file) as f:
         a = f.readlines()
@@ -29,7 +25,11 @@ def get_data3D(name_file):
 
         return x, y, z
 
-print(get_data3D('dataXYZ_with_hindrance.txt')[0])
 # get_data3D(name_file)[0] - X
 # get_data3D(name_file)[1] - Y
 # get_data3D(name_file)[2] - Z
+
+
+
+
+

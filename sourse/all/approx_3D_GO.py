@@ -12,3 +12,10 @@ x = get_data3D(name_file)[0]
 y = get_data3D(name_file)[1]
 z = get_data3D(name_file)[2]
 approx_3D(x, y, z)
+
+
+
+
+
+
+

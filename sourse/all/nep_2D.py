@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 
 
 # создадим функцию, которая будет оценивать значения в определённой точке
-def nadaraya_watson(x, y, query_x, h):
+def f_nadaray_watson(x, y, query_x, h):
     weights = np.exp(-0.5 * ((x - query_x) / h) ** 2)  # вычисление весов точек
-    numerator = np.sum(weights * y)  # числитель
-    denominator = np.sum(weights)  # знаменатель
+    numerator = np.sum(weights * y)
+    denominator = np.sum(weights)
     return numerator / denominator  # оценка значения в заданной точке
 
 
@@ -23,12 +23,29 @@ def nep_regression_2D(x, y):
     h = 0.5
 
     # Вычисляем оценки значений в заданных точках
-    query_y = [nadaraya_watson(x, y, q, h) for q in query_x]
+    query_y = [f_nadaray_watson(x, y, q, h) for q in query_x]
 
     # График
     plt.scatter(x, y, label='Исходные данные')
     plt.plot(query_x, query_y, label='Оценка Надарая-Ватсона', color='blue')
     plt.legend()
     plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

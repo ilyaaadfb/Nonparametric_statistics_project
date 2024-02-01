@@ -13,7 +13,7 @@ z2 = np.sin(x * y)
 data2 = np.array([x, y, z2]).T
 
 # добавим шум в данные
-z3 = np.sin(x * y) + np.random.normal(0, 0.1, 100)  # добавим шум в данные
+z3 = np.sin(x * y) + np.random.normal(0, 0.1, 100)
 data3 = np.array([x, y, z3]).T
 
 # запись данных в файл:
@@ -29,3 +29,11 @@ with open('dataXYZ.txt', 'w') as f:
 # с параметром с шумом
 with open('dataXYZ_with_hindrance.txt', 'w') as f:
     [print(i, j, z, file=f) for i, j, z in data3]
+
+
+
+
+
+
+
+

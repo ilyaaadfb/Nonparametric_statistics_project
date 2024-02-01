@@ -25,3 +25,10 @@ def approx_2D(x, y):
     plt.xlabel('x')
     plt.ylabel('y')
     plt.show()
+
+
+
+
+
+
+

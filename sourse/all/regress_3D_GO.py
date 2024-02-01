@@ -12,3 +12,9 @@ x = get_data3D(name_file)[0]
 y = get_data3D(name_file)[1]
 z = get_data3D(name_file)[2]
 nep_regression_3D(x, y, z)
+
+
+
+
+
+

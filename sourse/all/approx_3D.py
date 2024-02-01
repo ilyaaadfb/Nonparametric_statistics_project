@@ -3,23 +3,19 @@ import numpy as np
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
-
 # создадим функцию для аппроксимации на вход которой
 # подаются три массива X и Y и Z
 def approx_3D(x, y, z):
     x = np.array(list(map(float, x)))
     y = np.array(list(map(float, y)))
     z = np.array(list(map(float, z)))
-
     # Определение математической функции для
     # аппроксимации кривой
     def func(xy, a):
         x, y = xy
         return a*np.sin(x)
-
     # Выполнить подгонку кривой
     popt, pcov = curve_fit(func, (x, y), z)
-
     # Функция для реализации 3D-графика точек данных
     # и подобранной кривой
     fig = plt.figure()
@@ -34,3 +30,19 @@ def approx_3D(x, y, z):
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
     plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

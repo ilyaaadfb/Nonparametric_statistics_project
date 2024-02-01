@@ -28,3 +28,23 @@ with open('dataXY.txt', 'w') as f:
 # с параметром с шумом
 with open('dataXY_with_hindrance.txt', 'w') as f:
     [print(i, j, file=f) for i, j, in data3]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

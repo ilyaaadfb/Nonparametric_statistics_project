@@ -10,3 +10,8 @@ name_file = 'random_dataXY.txt'
 x = get_data2D(name_file)[0]
 y = get_data2D(name_file)[1]
 nep_regression_2D(x, y)
+
+
+
+
+
