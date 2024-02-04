@@ -32,7 +32,7 @@ def nep_regression_3D(x, y, z):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     ax.scatter(x, y, z, c='blue', label='Исходные данные')
-    ax.plot_surface(X_grid, Y_grid, Z_grid, cmap='gnuplot2_r', alpha=0.5,
+    ax.plot_surface(X_grid, Y_grid, Z_grid, cmap='gnuplot2_r', alpha=0.3,
                     label='Регрессия Надарая-Ватсон')
     ax.set_xlabel('X')
     ax.set_ylabel('Y')

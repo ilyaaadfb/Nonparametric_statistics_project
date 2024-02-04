@@ -27,8 +27,3 @@ def nep_regression_2D(x, y):
     plt.plot(query_x, query_y, label='Оценка Надарая-Ватсона', color='blue')
     plt.legend()
     plt.show()
-
-
-
-
-
