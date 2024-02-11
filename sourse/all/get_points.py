@@ -18,6 +18,7 @@ def get_data3D(name_file):
         a = f.readlines()
         x, y, z = [], [], []
         for i in a:
+            print(i)
             a, b, c = i.split()
             x.append(float(a))
             y.append(float(b))
@@ -28,8 +29,3 @@ def get_data3D(name_file):
 # get_data3D(name_file)[0] - X
 # get_data3D(name_file)[1] - Y
 # get_data3D(name_file)[2] - Z
-
-
-
-
-

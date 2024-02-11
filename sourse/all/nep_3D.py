@@ -1,6 +1,6 @@
 # импортируем необходимые модули
 import numpy as np
-import matplotlib.pyplot as plt
+import plotly.graph_objs as go
 
 
 # Функция для вычисления оценки Надарая-Ватсона
@@ -25,26 +25,13 @@ def nep_regression_3D(x, y, z):
     for i in range(X_grid.shape[0]):
         for j in range(X_grid.shape[1]):
             x_query = [X_grid[i, j], Y_grid[i, j], 0]  # Поиск координаты по Z
-            Z_grid[i, j] = nadaraya_watson(X, z, x_query, h=0.1)  # Вычисление
-                                                        # значения на поверхности
-
+            Z_grid[i, j] = nadaraya_watson(X, np.array(z), np.array(x_query),
+                                           h=0.5)  # Вычисление значения на поверхности
     # Построение графика в 3D
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(x, y, z, c='blue', label='Исходные данные')
-    ax.plot_surface(X_grid, Y_grid, Z_grid, cmap='gnuplot2_r', alpha=0.3,
-                    label='Регрессия Надарая-Ватсон')
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
-    ax.legend()
-    plt.show()
-
-
-
-
-
-
-
-
-
+    fig = go.Figure()
+    fig.add_trace(go.Scatter3d(x=x, y=y, z=z, mode='markers', marker=dict(color='blue', size=2), name='Исходные данные'))
+    fig.add_trace(
+        go.Surface(x=X_grid, y=Y_grid, z=Z_grid, colorscale='blackbody', opacity=0.3, name='Регрессия Надарая-Ватсон'))
+    fig.update_layout(scene=dict(xaxis_title='X', yaxis_title='Y', zaxis_title='Z'),
+                      legend=dict(x=0, y=1, traceorder='normal'))
+    fig.show()
