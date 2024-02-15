@@ -4,8 +4,8 @@ def get_data2D(name_file):
         x, y = [], []
         for i in a:
             a, b = i.split()
-            x.append(a)
-            y.append(b)
+            x.append(float(a))
+            y.append(float(b))
         return x, y
 
 

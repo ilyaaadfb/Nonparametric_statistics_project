@@ -1,48 +1,34 @@
-# импортируем необходимые модули
-import numpy as np
-from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
 
-def threeD_approx(x, y, z, function):
-    # Выполнить подгонку кривой
-    popt, pcov = curve_fit(function, (x, y), z)
+def linear_approximation(x, y):
+    n = len(x)
+    sum_x = sum(x)
+    sum_y = sum(y)
 
-    # Функция для реализации 3D-графика точек данных и подобранной кривой
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(x, y, z, color='blue')
-    x_range = np.linspace(0, 1, 50)
-    y_range = np.linspace(0, 1, 50)
-    X, Y = np.meshgrid(x_range, y_range)
-    Z = func((X, Y), *popt)
-    print(X)
-    ax.plot_surface(X, Y, Z, color='red', alpha=0.5)
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
+    sum_x_squared = sum([xi ** 2 for xi in x])
+    sum_xy = sum([xi * yi for xi, yi in zip(x, y)])
+
+    k = (n * sum_xy - sum_x * sum_y) / (n * sum_x_squared - sum_x ** 2)
+    b = (sum_y - k * sum_x) / n
+
+    return k, b
+
+
+def plot_linear_approximation(x, y2, k, b):
+    y = []
+    for i in x:
+        yi = k * i + b
+        y.append(yi)
+    plt.plot(x, y)
+    plt.scatter(x, y2)
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('Linear Approximation')
+    plt.grid(True)
     plt.show()
 
 
-# Считаем данные из txt файла
-with open('random_dataXYZ.txt') as f:
-    a = f.readlines()
-    x, y, z = [], [], []
-    for i in a:
-        a, b, c = i.split()
-        x.append(a)
-        y.append(b)
-        z.append(c)
-x = np.array(list(map(float, x)))
-y = np.array(list(map(float, y)))
-z = np.array(list(map(float, z)))
-data = np.array([x, y, z]).T
-
-
-# Определение математической функции для аппроксимации кривой
-def func(xy, a, b, c, d, e, f):
-    x, y = xy
-    return a + b * x + c * y + d * x ** 2 + e * y ** 2 + f * x * y
-
-
-threeD_approx(x, y, z, func)
+x = [5, 8, 9, 4, 1, 3]
+y2 = [0, 5, 7, 6, 4, 5]
+plot_linear_approximation(x, y2, linear_approximation(x, y2)[0], linear_approximation(x, y2)[1])
